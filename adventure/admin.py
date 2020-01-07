@@ -1,5 +1,5 @@
 from django.contrib import admin
-from adventure.models import Player #added
+from adventure.models import Player
 
 # Register your models here.
-admin.site.register(Player) #added
+admin.site.register(Player)
