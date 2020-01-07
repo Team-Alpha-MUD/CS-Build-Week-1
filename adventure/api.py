@@ -73,7 +73,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     # Inner class nested inside PersonalNoteSerializer
     class Meta:
         model = Player
-        fields = ('currentRoom')
+        fields = ('currentRoom', )
 
 class RoomSerializer(serializers.HyperlinkedModelSerializer):
     # Inner class nested inside PersonalNoteSerializer
