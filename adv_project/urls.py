@@ -10,7 +10,7 @@ router.register(r'players', PlayerViewSet)
 router.register(r'rooms', RoomViewSet)
 
 urlpatterns = [
-    path('', include('api.urls')),
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('api/adv/', include('adventure.urls')),
