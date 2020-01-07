@@ -65,3 +65,26 @@ def move(request):
 def say(request):
     # IMPLEMENT
     return JsonResponse({'error':"Not yet implemented"}, safe=True, status=500)
+
+# THE FOLLOWING HAS BEEN ADDED on the model of Intro-Django Day 3:
+from rest_framework import serializers, viewsets
+
+class PlayerSerializer(serializers.HyperlinkedModelSerializer):
+    # Inner class nested inside PersonalNoteSerializer
+    class Meta:
+        model = Player
+        fields = ('user', 'currentRoom')
+
+class RoomSerializer(serializers.HyperlinkedModelSerializer):
+    # Inner class nested inside PersonalNoteSerializer
+    class Meta:
+        model = Room
+        fields = ('title', 'description', 'n_to', 's_to', 'e_to', 'w_to')
+
+class PlayerViewSet(viewsets.ModelViewSet):
+    serializer_class = PlayerSerializer
+    queryset = Player.objects.all()
+
+class RoomViewSet(viewsets.ModelViewSet):
+    serializer_class = RoomSerializer
+    queryset = Room.objects.all()
