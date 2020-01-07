@@ -66,14 +66,13 @@ def say(request):
     # IMPLEMENT
     return JsonResponse({'error':"Not yet implemented"}, safe=True, status=500)
 
-# THE FOLLOWING HAS BEEN ADDED on the model of Intro-Django Day 3:
 from rest_framework import serializers, viewsets
 
 class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     # Inner class nested inside PersonalNoteSerializer
     class Meta:
         model = Player
-        fields = ('currentRoom', )
+        fields = ('uuid', 'currentRoom')
 
 class RoomSerializer(serializers.HyperlinkedModelSerializer):
     # Inner class nested inside PersonalNoteSerializer
