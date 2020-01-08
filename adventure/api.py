@@ -65,3 +65,36 @@ def move(request):
 def say(request):
     # IMPLEMENT
     return JsonResponse({'error':"Not yet implemented"}, safe=True, status=500)
+
+from rest_framework import serializers, viewsets
+
+class PlayerSerializer(serializers.HyperlinkedModelSerializer):
+    # Inner class nested inside PersonalNoteSerializer
+    class Meta:
+        model = Player
+        fields = ('user', 'currentRoom', 'uuid')
+    def create(self, validated_data):
+        #import pdb; pdb.set_trace()
+        user = self.context['request'].user
+        player = Player.objects.create(user=user, **validated_data)
+        return player
+
+class RoomSerializer(serializers.HyperlinkedModelSerializer):
+    # Inner class nested inside PersonalNoteSerializer
+    class Meta:
+        model = Room
+        fields = ('title', 'description', 'n_to', 's_to', 'e_to', 'w_to')
+
+class PlayerViewSet(viewsets.ModelViewSet):
+    serializer_class = PlayerSerializer
+    queryset = Player.objects.all()
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_anonymous:
+            return Player.objects.none()
+        else:
+            return Player.objects.filter(user=user)
+
+class RoomViewSet(viewsets.ModelViewSet):
+    serializer_class = RoomSerializer
+    queryset = Room.objects.all()
