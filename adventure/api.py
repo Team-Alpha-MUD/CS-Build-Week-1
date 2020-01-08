@@ -59,15 +59,14 @@ def move(request):
         players = room.playerNames(player_id)
         return JsonResponse({'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players, 'error_msg':"You cannot move that way."}, safe=True)
 
+from django.core import serializers
+@api_view(["GET"])
+def rooms(request):
+    rooms = serializers.serialize("json", Room.objects.all())
+    return JsonResponse({'rooms': rooms}, safe=True)
 
 @csrf_exempt
 @api_view(["POST"])
 def say(request):
     # IMPLEMENT
     return JsonResponse({'error':"Not yet implemented"}, safe=True, status=500)
-
-from django.core import serializers
-@api_view(["GET"])
-def rooms(request):
-    rooms = serializers.serialize("json", Room.objects.all())
-    return JsonResponse(rooms, safe=False)
