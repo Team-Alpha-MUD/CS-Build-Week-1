@@ -63,7 +63,7 @@ from django.core import serializers
 @api_view(["GET"])
 def rooms(request):
     rooms = serializers.serialize("json", Room.objects.all())
-    return JsonResponse({'rooms': list(rooms)}, safe=True)
+    return JsonResponse({'rooms': rooms}, safe=True)
 
 @csrf_exempt
 @api_view(["POST"])
