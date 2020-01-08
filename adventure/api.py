@@ -69,5 +69,5 @@ def say(request):
 
 @api_view(["GET"])
 def rooms(request):
-    roooms = Room.objects.all()
-    return JsonResponse(roooms, safe=True)
+    rooms = Room.objects.values()
+    return JsonResponse(rooms, safe=False)
