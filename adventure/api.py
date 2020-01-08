@@ -66,8 +66,8 @@ def say(request):
     # IMPLEMENT
     return JsonResponse({'error':"Not yet implemented"}, safe=True, status=500)
 
-
+from django.core import serializers
 @api_view(["GET"])
 def rooms(request):
-    rooms = Room.objects.values()
-    return JsonResponse(rooms, safe=False)
+    rooms = serializers.serialize(Room.objects.all())
+    return JsonResponse(rooms, safe=True)
