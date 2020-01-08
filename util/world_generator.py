@@ -71,6 +71,7 @@ class World:
             else:
                 room = Room(title=f"The {location_info[room_count][0]} {location_info[room_count][1]}",
                             description=f"A Very {location_info[room_count][0]} {location_info[room_count][1]}", x=x, y=y)
+                room.save()
                 self.grid[y][x] = room
                 room_count += 1
             # Note that in Django, you'll need to save the room after you create it
@@ -84,7 +85,6 @@ class World:
                 
             # Update iteration variables
             previous_room = room
-            room.save()
 
         players=Player.objects.all()
         for p in players:
