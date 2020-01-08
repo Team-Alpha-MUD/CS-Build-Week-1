@@ -56,7 +56,7 @@ class World:
             self.grid[i] = [None] * size_x
 
         # Start from center
-        x = size_x//2 + 1
+        x = size_x//2
         y = size_y//2
         room_count = 0
 
