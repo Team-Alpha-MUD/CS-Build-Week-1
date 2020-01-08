@@ -69,5 +69,5 @@ def say(request):
 from django.core import serializers
 @api_view(["GET"])
 def rooms(request):
-    rooms = serializers.serialize(Room.objects.all())
+    rooms = serializers.serialize("json", Room.objects.all())
     return JsonResponse(rooms, safe=True)
