@@ -95,9 +95,9 @@ class World:
         '''
         Print the rooms in room_grid in ascii characters.
         '''
-
+        rows = []
         # Add top border
-        str = "# " * ((3 + self.width * 5) // 2) + "<br>"
+        rows.append("# " * ((3 + self.width * 5) // 2))
 
         # The console prints top to bottom but our array is arranged
         # bottom to top.
@@ -106,47 +106,56 @@ class World:
         reverse_grid = list(self.grid)  # make a copy of the list
         reverse_grid.reverse()
         for row in reverse_grid:
+            temp = ''
             # PRINT NORTH CONNECTION ROW
-            str += "#"
+            temp += "#"
             for room in row:
                 if room is not None and room.n_to is not None:
-                    str += "  |  "
+                    temp += "  |  "
                 else:
-                    str += "     "
-            str += "#<br>"
+                    temp += "     "
+            temp += "#"
+            rows.append(temp)
+
             # PRINT ROOM ROW
-            str += "#"
+            temp = ''
+            temp += "#"
             for room in row:
                 if room is not None and room.w_to is not None:
-                    str += "-"
+                    temp += "-"
                 else:
-                    str += " "
+                    temp += " "
                 if room is not None:
-                    str += f"{room.id}".zfill(3)
+                    temp += f"{room.id}".zfill(3)
                 else:
-                    str += "   "
+                    temp += "   "
                 if room is not None and room.e_to is not None:
-                    str += "-"
+                    temp += "-"
                 else:
-                    str += " "
-            str += "#<br>"
+                    temp += " "
+            temp += "#"
+            rows.append(temp)
+
             # PRINT SOUTH CONNECTION ROW
-            str += "#"
+            temp = ''
+            temp += "#"
             for room in row:
                 if room is not None and room.s_to is not None:
-                    str += "  |  "
+                    temp += "  |  "
                 else:
-                    str += "     "
-            str += "#<br>"
+                    temp += "     "
+            temp += "#"
+            rows.append(temp)
 
         # Add bottom border
-        str += "# " * ((3 + self.width * 5) // 2) + "<br>"
+        rows.append("# " * ((3 + self.width * 5) // 2))
 
         # Print string
-        return str
+        return rows
 
 w = World()
 num_rooms = 100
 width = 31
 height = 11
 w.generate_rooms(width, height, num_rooms)
+# w.print_rooms()
