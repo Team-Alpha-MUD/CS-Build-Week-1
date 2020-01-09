@@ -91,6 +91,60 @@ class World:
             p.currentRoom=room.id
             p.save()
 
+    def print_rooms(self):
+        '''
+        Print the rooms in room_grid in ascii characters.
+        '''
+
+        # Add top border
+        str = "# " * ((3 + self.width * 5) // 2) + "<br>"
+
+        # The console prints top to bottom but our array is arranged
+        # bottom to top.
+        #
+        # We reverse it so it draws in the right direction.
+        reverse_grid = list(self.grid)  # make a copy of the list
+        reverse_grid.reverse()
+        for row in reverse_grid:
+            # PRINT NORTH CONNECTION ROW
+            str += "#"
+            for room in row:
+                if room is not None and room.n_to is not None:
+                    str += "  |  "
+                else:
+                    str += "     "
+            str += "#<br>"
+            # PRINT ROOM ROW
+            str += "#"
+            for room in row:
+                if room is not None and room.w_to is not None:
+                    str += "-"
+                else:
+                    str += " "
+                if room is not None:
+                    str += f"{room.id}".zfill(3)
+                else:
+                    str += "   "
+                if room is not None and room.e_to is not None:
+                    str += "-"
+                else:
+                    str += " "
+            str += "#<br>"
+            # PRINT SOUTH CONNECTION ROW
+            str += "#"
+            for room in row:
+                if room is not None and room.s_to is not None:
+                    str += "  |  "
+                else:
+                    str += "     "
+            str += "#<br>"
+
+        # Add bottom border
+        str += "# " * ((3 + self.width * 5) // 2) + "<br>"
+
+        # Print string
+        return str
+
 w = World()
 num_rooms = 100
 width = 31
