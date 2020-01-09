@@ -1,0 +1,40 @@
+<head>
+    {% load static %}
+    <link href="{% static 'tinymce/css/prism.css' %}" rel='stylesheet'>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+    {% for r in room %}
+    <p>{{r.title}} - ({{r.x}}, {{r.y}})</p>
+
+    <br>
+    {% endfor %}
+
+    <div class="row">
+        {% for p in player %}
+        <div class="col s12 l4">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">{{p.user}}</span>
+                    <p style="font-size:50%">{{p.uuid}}</p>
+                    <p>{{p.currentRoom}}</p>
+                </div>
+                <div class="card-action">
+                    <a href="#">North</a>
+                    <a href="#">South</a>
+                    <a href="#">East</a>
+                    <a href="#">West</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+<script src="{% static 'tinymce/js/prism.js' %}"></script>
