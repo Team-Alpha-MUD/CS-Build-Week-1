@@ -10,11 +10,6 @@
 
 <body>
     <p>Testing</p>
-    {% for r in room %}
-    <p>{{r.title}} - ({{r.x}}, {{r.y}})</p>
-
-    <br>
-    {% endfor %}
 
     <div class="row">
         {% for p in player %}
@@ -35,6 +30,10 @@
         </div>
         {% endfor %}
     </div>
+
+    {% for r in room %}
+    <p>{{r.title}} - ({{r.x}}, {{r.y}})</p>
+    {% endfor %}
 
 </body>
 
