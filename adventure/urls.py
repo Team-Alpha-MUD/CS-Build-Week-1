@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.urls import path, include
 from . import api, views
 
-app_name = "adventure"
+# app_name = "adventure"
 
 urlpatterns = [
     path("", views.homepage, name="homepage"),
