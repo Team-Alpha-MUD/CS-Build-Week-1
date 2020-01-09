@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Room, Player
-from util.world_generator import w
+from util.world_map import world
 
 # Create your views here.
 def homepage(request):
@@ -10,4 +10,4 @@ def homepage(request):
                   template_name='adventure/home.html',
                   context={'room': Room.objects.all,
                            'player': Player.objects.all,
-                           'world': w.print_rooms})
+                           'world': world})

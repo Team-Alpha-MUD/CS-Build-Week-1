@@ -1,17 +1,17 @@
-<!-- <head>
+<head>
     {% load static %}
     <link href="{% static 'tinymce/css/prism.css' %}" rel='stylesheet'>
-    Compiled and minified CSS
+    <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    Compiled and minified JavaScript
+    <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</head> -->
+</head>
 
 <body>
     <p>Testing</p>
 
-    <!-- <div class="row">
+    <div class="row">
         {% for p in player %}
         <div class="col s12 l4">
             <div class="card blue-grey darken-1">
@@ -29,10 +29,13 @@
             </div>
         </div>
         {% endfor %}
-    </div> -->
+    </div>
 
     <p>
-        {{world}}
+        {% for w in world %}
+        {{w}}
+        <br>
+        {% endfor %}
     </p>
 
     {% for r in room %}
@@ -41,4 +44,4 @@
 
 </body>
 
-<!-- <script src="{% static 'tinymce/js/prism.js' %}"></script> -->
+<script src="{% static 'tinymce/js/prism.js' %}"></script>
