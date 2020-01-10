@@ -3,7 +3,7 @@
 # to see the world.
 import random
 
-
+# random.seed(12)
 class Room:
     def __init__(self, id, name, description, x, y):
         self.id = id
@@ -158,9 +158,9 @@ class World:
 
 
 w = World()
-num_rooms = 100
+num_rooms = 500
 width = 31
-height = 11
+height = 41
 w.generate_rooms(width, height, num_rooms)
 w.print_rooms()
 
