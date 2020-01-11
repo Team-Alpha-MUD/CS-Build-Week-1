@@ -32,12 +32,11 @@
 
     <div class="row">
         {% for r in room %}
-        <div class="col s12 m3">
-            <div class="card black-grey darken-1">
+        <div class="col s12 m2">
+            <div class="card white-grey darken-1">
                 <div class="card-content white-text">
                     <span class="card-title">{{r.title}}</span>
                     <p style="font-size:50%">({{r.x}}, {{r.y}})</p>
-                    <p>{{p.currentRoom}}</p>
                 </div>
                 <div class="card-action">
                     <a href="#">North to {{r.n_to}}</a>
