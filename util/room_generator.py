@@ -3,7 +3,7 @@
 # to see the world.
 import random
 
-
+# random.seed(12)
 class Room:
     def __init__(self, id, name, description, x, y):
         self.id = id

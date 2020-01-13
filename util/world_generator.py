@@ -91,8 +91,71 @@ class World:
             p.currentRoom=room.id
             p.save()
 
+    def print_rooms(self):
+        '''
+        Print the rooms in room_grid in ascii characters.
+        '''
+        rows = []
+        # Add top border
+        rows.append("# " * ((3 + self.width * 5) // 2))
+
+        # The console prints top to bottom but our array is arranged
+        # bottom to top.
+        #
+        # We reverse it so it draws in the right direction.
+        reverse_grid = list(self.grid)  # make a copy of the list
+        reverse_grid.reverse()
+        for row in reverse_grid:
+            temp = ''
+            # PRINT NORTH CONNECTION ROW
+            temp += "#"
+            for room in row:
+                if room is not None and room.n_to is not None:
+                    temp += "  |  "
+                else:
+                    temp += "     "
+            temp += "#"
+            rows.append(temp)
+
+            # PRINT ROOM ROW
+            temp = ''
+            temp += "#"
+            for room in row:
+                if room is not None and room.w_to is not None:
+                    temp += "-"
+                else:
+                    temp += " "
+                if room is not None:
+                    temp += f"{room.id}".zfill(3)
+                else:
+                    temp += "   "
+                if room is not None and room.e_to is not None:
+                    temp += "-"
+                else:
+                    temp += " "
+            temp += "#"
+            rows.append(temp)
+
+            # PRINT SOUTH CONNECTION ROW
+            temp = ''
+            temp += "#"
+            for room in row:
+                if room is not None and room.s_to is not None:
+                    temp += "  |  "
+                else:
+                    temp += "     "
+            temp += "#"
+            rows.append(temp)
+
+        # Add bottom border
+        rows.append("# " * ((3 + self.width * 5) // 2))
+
+        # Print string
+        return rows
+
 w = World()
 num_rooms = 100
 width = 31
 height = 11
 w.generate_rooms(width, height, num_rooms)
+# w.print_rooms()
